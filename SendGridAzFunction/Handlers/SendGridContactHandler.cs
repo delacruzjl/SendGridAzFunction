@@ -46,7 +46,7 @@ public class SendGridContactHandler : ISendGridContactHandler
             var message = await response.Body.ReadAsStringAsync();
             if ((int)response.StatusCode >= StatusCodes.Status400BadRequest)
             {
-                logger.LogError($"SendGrid.Response: {message}");
+                logger.LogError("SendGrid.Response: {Message}", message);
                 throw new HttpRequestException(message);
             }
 
@@ -80,7 +80,7 @@ public class SendGridContactHandler : ISendGridContactHandler
             var message = await response.Body.ReadAsStringAsync();
             if ((int)response.StatusCode >= StatusCodes.Status400BadRequest)
             {
-                logger.LogError($"SendGrid.Response: {message}");
+                logger.LogError("SendGrid.Response: {Message}", message);
                 throw new HttpRequestException(message);
             }
 
