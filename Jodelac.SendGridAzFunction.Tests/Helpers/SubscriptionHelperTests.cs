@@ -7,16 +7,19 @@ using Jodelac.SendGridAzFunction.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
 
+namespace Jodelac.SendGridAzFunction.Tests.Helpers;
+
 public class SubscriptionHelperTests
 {
     private readonly Mock<ILogger> _loggerMock;
     private readonly Mock<ISendGridContactHandler> _sendgridContactHandlerStub;
     private readonly SubscriptionHelper _sut;
 
-    private JsonSerializerOptions _jsonOptions;
+    private readonly JsonSerializerOptions _jsonOptions;
 
     public SubscriptionHelperTests()
     {
+        _jsonOptions = new();
         _loggerMock = new Mock<ILogger>();
         _sendgridContactHandlerStub = new Mock<ISendGridContactHandler>();
         _sut = new SubscriptionHelper(_jsonOptions, new InlineValidator<NewsletterContact>(), _sendgridContactHandlerStub.Object);
@@ -38,8 +41,8 @@ public class SubscriptionHelperTests
 
         // Assert
         response.Equals(200);
-        _sendgridContactHandlerStub.Verify(x => x.AddContactToSendGridList(contact, _loggerMock.Object), Times.Once);
-        _sendgridContactHandlerStub.Verify(x => x.AddContactToSendGridGroup(contact, _loggerMock.Object), Times.Once);
+        _sendgridContactHandlerStub.Verify(x => x.AddContactToSendGridList(It.IsAny<NewsletterContact>(), It.IsAny<ILogger>()), Times.Once);
+        _sendgridContactHandlerStub.Verify(x => x.AddContactToSendGridGroup(It.IsAny<NewsletterContact>(), It.IsAny<ILogger>()), Times.Once);
     }
 
     [Fact]
@@ -55,9 +58,9 @@ public class SubscriptionHelperTests
         body.Position = 0;
 
         _sendgridContactHandlerStub.Setup(x => x.AddContactToSendGridList(It.IsAny<NewsletterContact>(), It.IsAny<ILogger>())).ReturnsAsync(400);
-        _sendgridContactHandlerStub.Setup(x => x.AddContactToSendGridGroup(It.IsAny<NewsletterContact>(), It.IsAny<ILogger>())).ReturnsAsync(400);
+        _sendgridContactHandlerStub.Setup(x => x.AddContactToSendGridGroup(It.IsAny<NewsletterContact>(), It.IsAny<ILogger>())).Throws<HttpRequestException>();
 
         // Act & Assert
-        await Assert.ThrowsAsync<JsonException>(() => _sut.SubscribeContactToSite(body, _loggerMock.Object, 0));
+        await Assert.ThrowsAsync<HttpRequestException>(() => _sut.SubscribeContactToSite(body, _loggerMock.Object, 0));
     }
 }

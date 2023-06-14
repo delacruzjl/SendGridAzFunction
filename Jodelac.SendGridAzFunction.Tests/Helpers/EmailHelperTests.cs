@@ -13,7 +13,7 @@ namespace Jodelac.SendGridAzFunction.FunctionHelpers.Tests
     public class EmailHelperTests
     {
         [Fact]
-        public async void QueueEmailToSendGrid_WithValidContactForm_ReturnsValidSendGridMessage()
+        public async Task QueueEmailToSendGrid_WithValidContactForm_ReturnsValidSendGridMessage()
         {
             // Arrange
             JsonSerializerOptions jsonOptions = new();
