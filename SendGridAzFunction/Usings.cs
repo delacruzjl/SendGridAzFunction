@@ -1,1 +1,1 @@
-﻿global using SendGridAzFunction.Models;
+﻿global using Jodelac.SendGridAzFunction.Models;

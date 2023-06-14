@@ -1,11 +1,11 @@
 ﻿using System.Text.Json;
 using FluentValidation;
+using Jodelac.SendGridAzFunction.Extensions;
+using Jodelac.SendGridAzFunction.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using SendGridAzFunction.Extensions;
-using SendGridAzFunction.Interfaces;
 
-namespace SendGridAzFunction.FunctionHelpers;
+namespace Jodelac.SendGridAzFunction.FunctionHelpers;
 
 public class SubscriptionHelper
 {

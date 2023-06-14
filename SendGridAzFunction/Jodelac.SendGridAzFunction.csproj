@@ -11,6 +11,7 @@
     <Description>A set of libraries to handle emails and newsletter signup utilizing SendGrid API and Azure Functions</Description>
     <PackageProjectUrl>http://delacruzhome.com</PackageProjectUrl>
     <PackageTags>SendGrid; Azure Functions; Emails; Newsletter Signup, Suppression Groups; Contact Lists;</PackageTags>
+    <RepositoryUrl>https://github.com/delacruzjl/SendGridAzFunction</RepositoryUrl>
   </PropertyGroup>
 
 	<ItemGroup>

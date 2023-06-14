@@ -1,6 +1,6 @@
 ﻿using SendGrid.Helpers.Mail;
 
-namespace SendGridAzFunction.Interfaces;
+namespace Jodelac.SendGridAzFunction.Interfaces;
 
 public interface ISendGridMessageHandler
 {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace SendGridAzFunction.Models;
+namespace Jodelac.SendGridAzFunction.Models;
 
 [System.Diagnostics.CodeAnalysis.SuppressMessage(
     "Major Code Smell", "S3928:Parameter names used into ArgumentException constructors should match an existing one ",

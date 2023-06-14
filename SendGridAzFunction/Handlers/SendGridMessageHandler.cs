@@ -1,7 +1,7 @@
-﻿using SendGrid.Helpers.Mail;
-using SendGridAzFunction.Interfaces;
+﻿using Jodelac.SendGridAzFunction.Interfaces;
+using SendGrid.Helpers.Mail;
 
-namespace SendGridAzFunction.Handlers;
+namespace Jodelac.SendGridAzFunction.Handlers;
 public class SendGridMessageHandler : ISendGridMessageHandler
 {
     private readonly SendGridConfiguration _sendGridConfiguration;

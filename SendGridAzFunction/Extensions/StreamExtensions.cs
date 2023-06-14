@@ -2,7 +2,7 @@
 using System.Text.Json;
 using Microsoft.Extensions.Logging;
 
-namespace SendGridAzFunction.Extensions;
+namespace Jodelac.SendGridAzFunction.Extensions;
 
 public static class StreamExtensions
 {

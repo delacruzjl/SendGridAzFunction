@@ -1,11 +1,11 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
+using Jodelac.SendGridAzFunction.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using SendGrid;
-using SendGridAzFunction.Interfaces;
 
-namespace SendGridAzFunction.Handlers;
+namespace Jodelac.SendGridAzFunction.Handlers;
 
 public class SendGridContactHandler : ISendGridContactHandler
 {

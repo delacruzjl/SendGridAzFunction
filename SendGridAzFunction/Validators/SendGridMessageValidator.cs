@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
 
-namespace SendGridAzFunction.Validators;
+namespace Jodelac.SendGridAzFunction.Validators;
 
 public class SendGridMessageValidator : AbstractValidator<ContactForm>
 {

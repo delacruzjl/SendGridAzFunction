@@ -1,4 +1,4 @@
-﻿namespace SendGridAzFunction.Models;
+﻿namespace Jodelac.SendGridAzFunction.Models;
 
 public class ContactForm : ApiModelBase
 {

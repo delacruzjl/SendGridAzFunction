@@ -1,13 +1,13 @@
 ﻿using System.Text.Json;
 using FluentValidation;
+using Jodelac.SendGridAzFunction.Extensions;
+using Jodelac.SendGridAzFunction.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using SendGrid.Helpers.Mail;
-using SendGridAzFunction.Extensions;
-using SendGridAzFunction.Interfaces;
 
-namespace SendGridAzFunction.FunctionHelpers;
+namespace Jodelac.SendGridAzFunction.FunctionHelpers;
 
 public class EmailHelper
 {

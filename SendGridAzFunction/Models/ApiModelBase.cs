@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Logging;
 
-namespace SendGridAzFunction.Models;
+namespace Jodelac.SendGridAzFunction.Models;
 
 public abstract class ApiModelBase
 {

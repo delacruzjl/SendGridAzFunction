@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.33711.374
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SendGridAzFunction", "SendGridAzFunction\SendGridAzFunction.csproj", "{93857003-1260-4E8C-A985-AD257D6C1666}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jodelac.SendGridAzFunction", "SendGridAzFunction\Jodelac.SendGridAzFunction.csproj", "{93857003-1260-4E8C-A985-AD257D6C1666}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{61651289-A007-47D7-91BF-C424A00A9C3C}"
 	ProjectSection(SolutionItems) = preProject

@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace SendGridAzFunction.Models;
+namespace Jodelac.SendGridAzFunction.Models;
 
 public class NewsletterContact : ApiModelBase
 {
