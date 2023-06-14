@@ -9,7 +9,7 @@ using SendGrid.Helpers.Mail;
 
 namespace Jodelac.SendGridAzFunction.FunctionHelpers;
 
-public class EmailHelper
+public class EmailHelper : IEmailHelper
 {
     private readonly JsonSerializerOptions _jsonOptions;
     private readonly IValidator<ContactForm> _validator;

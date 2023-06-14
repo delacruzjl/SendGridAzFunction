@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using FluentValidation;
+using Jodelac.SendGridAzFunction.FunctionHelpers;
 using Jodelac.SendGridAzFunction.Handlers;
 using Jodelac.SendGridAzFunction.Interfaces;
 using Jodelac.SendGridAzFunction.Validators;
@@ -28,6 +29,9 @@ public static class ServiceCollectionExtensions
         services.AddSingleton<ISendGridClient>(new SendGridClient(sendGridApiKey));
         services.AddScoped<ISendGridContactHandler, SendGridContactHandler>();
         services.AddScoped<ISendGridMessageHandler, SendGridMessageHandler>();
+
+        services.AddScoped<IEmailHelper, EmailHelper>();
+        services.AddScoped<ISubscriptionHelper, SubscriptionHelper>();
 
         return services;
     }

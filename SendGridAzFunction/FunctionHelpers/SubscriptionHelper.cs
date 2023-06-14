@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Jodelac.SendGridAzFunction.FunctionHelpers;
 
-public class SubscriptionHelper
+public class SubscriptionHelper : ISubscriptionHelper
 {
     private readonly JsonSerializerOptions _jsonOptions;
     private readonly IValidator<NewsletterContact> _validator;
