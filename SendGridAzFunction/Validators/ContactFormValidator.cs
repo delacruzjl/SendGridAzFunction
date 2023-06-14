@@ -2,9 +2,9 @@
 
 namespace Jodelac.SendGridAzFunction.Validators;
 
-public class SendGridMessageValidator : AbstractValidator<ContactForm>
+public class ContactFormValidator : AbstractValidator<ContactForm>
 {
-    public SendGridMessageValidator()
+    public ContactFormValidator()
     {
         RuleFor(x => x.FullName)
             .NotEmpty()

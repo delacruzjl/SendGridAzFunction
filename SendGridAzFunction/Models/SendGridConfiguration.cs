@@ -8,13 +8,13 @@ namespace Jodelac.SendGridAzFunction.Models;
 public class SendGridConfiguration
 {
     public const string SENDGRID_API_KEY = "AzureWebJobsSendGridApiKey";
-    private const string SENDGRID_NEWSLETTER_LIST_ID = "SENDGRID_NEWSLETTER_LIST_ID";
-    private const string SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID = "SENDGRID_TEMPLATE_ID";
-    private const string SENDGRID_SENDER_EMAIL_ADDRESS = "SENDGRID_EMAIL_ADDRESS";
-    private const string SENDGRID_SENDER_NAME = "SENDGRID_SENDER_NAME";
-    private const string SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT = "SENDGRID_SUBJECT_LINE";
-    private const string SENDGRID_SUPRESSION_GROUP_ID = "SENDGRID_SUPPRESSION_GROUP_ID";
-    private const string WEBSITE_ADMIN_EMAIL = "WEBSITE_ADMIN_EMAIL";
+    public const string SENDGRID_NEWSLETTER_LIST_ID = "SENDGRID_NEWSLETTER_LIST_ID";
+    public const string SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID = "SENDGRID_TEMPLATE_ID";
+    public const string SENDGRID_SENDER_EMAIL_ADDRESS = "SENDGRID_EMAIL_ADDRESS";
+    public const string SENDGRID_SENDER_NAME = "SENDGRID_SENDER_NAME";
+    public const string SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT = "SENDGRID_SUBJECT_LINE";
+    public const string SENDGRID_SUPRESSION_GROUP_ID = "SENDGRID_SUPPRESSION_GROUP_ID";
+    public const string WEBSITE_ADMIN_EMAIL = "WEBSITE_ADMIN_EMAIL";
 
     private readonly IConfiguration _configuration;
 

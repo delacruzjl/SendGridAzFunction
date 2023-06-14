@@ -7,9 +7,15 @@ public class ContactForm : ApiModelBase
     public string Content { get; set; }
 
     public ContactForm()
+        : this(string.Empty, string.Empty, string.Empty)
     {
-        FullName = string.Empty;
-        Email = string.Empty;
-        Content = string.Empty;
+
+    }
+
+    public ContactForm(string fullName, string email, string content)
+    {
+        FullName = fullName;
+        Email = email;
+        Content = content;
     }
 }

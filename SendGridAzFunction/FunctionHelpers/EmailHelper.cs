@@ -2,14 +2,13 @@
 using FluentValidation;
 using Jodelac.SendGridAzFunction.Extensions;
 using Jodelac.SendGridAzFunction.Interfaces;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
 using SendGrid.Helpers.Mail;
 
 namespace Jodelac.SendGridAzFunction.FunctionHelpers;
 
-public class EmailHelper
+public class EmailHelper : IEmailHelper
 {
     private readonly JsonSerializerOptions _jsonOptions;
     private readonly IValidator<ContactForm> _validator;
@@ -28,19 +27,19 @@ public class EmailHelper
         _sendGridContactHandler = sendGridContactHandler;
     }
 
-    public async Task QueueEmailToSendGrid(HttpRequest req, IAsyncCollector<SendGridMessage> messageCollector, ILogger _logger)
+    public async Task QueueEmailToSendGrid(Stream body, IAsyncCollector<SendGridMessage> messageCollector, ILogger _logger)
     {
         using (_logger.BeginScope(nameof(QueueEmailToSendGrid)))
         {
-            var message = await req.Body.ConvertFrom<ContactForm>(_jsonOptions, _logger);
+            var message = await body.ConvertFrom<ContactForm>(_jsonOptions, _logger);
             await message.Validate(_validator, _logger);
 
             var names = message.FullName.Split(' ');
             NewsletterContact contact = new()
             {
                 Email = message.Email,
-                FirstName = names.First(),
-                LastName = names.Last()
+                FirstName = names[0],
+                LastName = names[^1]
             };
 
             _ = await _sendGridContactHandler.AddContactToSendGridList(contact, _logger);

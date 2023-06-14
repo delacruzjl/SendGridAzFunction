@@ -9,14 +9,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		README.md = README.md
+		SECURITY.md = SECURITY.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{A89E7333-8C3F-4315-A659-12424FFEEB23}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
 		.github\workflows\codeql.yml = .github\workflows\codeql.yml
 		.github\dependabot.yml = .github\dependabot.yml
 		nuget.yml = nuget.yml
 	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jodelac.SendGridAzFunction.Tests", "Jodelac.SendGridAzFunction.Tests\Jodelac.SendGridAzFunction.Tests.csproj", "{8AC31F51-02E3-49F6-AE3E-9B87B999E8AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +32,10 @@ Global
 		{93857003-1260-4E8C-A985-AD257D6C1666}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93857003-1260-4E8C-A985-AD257D6C1666}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93857003-1260-4E8C-A985-AD257D6C1666}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8AC31F51-02E3-49F6-AE3E-9B87B999E8AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8AC31F51-02E3-49F6-AE3E-9B87B999E8AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8AC31F51-02E3-49F6-AE3E-9B87B999E8AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8AC31F51-02E3-49F6-AE3E-9B87B999E8AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
