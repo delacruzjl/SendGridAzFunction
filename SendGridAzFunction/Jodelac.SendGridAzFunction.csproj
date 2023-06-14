@@ -12,6 +12,8 @@
     <PackageProjectUrl>http://delacruzhome.com</PackageProjectUrl>
     <PackageTags>SendGrid; Azure Functions; Emails; Newsletter Signup, Suppression Groups; Contact Lists;</PackageTags>
     <RepositoryUrl>https://github.com/delacruzjl/SendGridAzFunction</RepositoryUrl>
+	  <IncludeSymbols>true</IncludeSymbols>
+	  <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
 	<ItemGroup>
