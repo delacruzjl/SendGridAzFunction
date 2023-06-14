@@ -2,23 +2,15 @@
 
 Usage:
 
-```csharp
-// 1. Register the service in your startup.cs
-services.AddSendGridAzFunction(Configuration); // Configuration is an IConfiguration object
+1. Install the package in your Azure Function project.
 
-// 2. inside an azure function, call the method you desire:
-...
-await QueueEmailToSendGrid(req, messageCollector, _logger);
-...
-
-// OR
-
-response = await SubscribeContactToSite(req, _logger, response);
-return new StatusCodeResult(response);
-
+```bash
+dotnet add package Jodelac.SendGridAzFunction
 ```
 
-## Required settings
+3. Setup dependency injection for Azure Functions
+
+4. Add the require keys to your settings
 
 ```init
 AzureWebJobsSendGridApiKey
@@ -30,3 +22,51 @@ SENDGRID_SUBJECT_LINE
 SENDGRID_SUPPRESSION_GROUP_ID
 WEBSITE_ADMIN_EMAIL
 ```
+   
+4. Register the services
+
+```csharp
+// Startup.cs
+// ...
+services.AddSendGridAzFunction(Configuration); // Configuration is an IConfiguration object
+// ...
+```
+
+## To add a contact to your newsletter
+
+```csharp
+private readonly ISubscriptionHelper _subscriptionHelper;
+
+ctor(ISubscriptionHelper subscriptionHelper) { // ctor = constructor of your Azure Function
+  _subscriptionHelper = subscriptionHelper
+}
+
+public async Task Subscribe(
+  [HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req
+  ILogger _logger) {            
+            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            int response = await _subscriptionHelper.SubscribeContactToSite(req.Body, _logger); // response = HttpStatusCode
+            return new StatusCodeResult(response);
+}
+```
+
+## To send an email with SendGrid
+
+```csharp
+// ...
+private readonly IEmailHelper _emailHelper;
+
+ctor(IEmailHelper emailHelper) { // ctor = constructor of your Azure Function
+  _emailHelper = emailHelper;
+}
+
+public async Task Send(
+        [HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req, 
+        [SendGrid] IAsyncCollector<SendGridMessage> messageCollector,
+        ILogger _logger) {            
+            _logger.LogInformation("C# HTTP trigger function processed a request.");
+            await _emailHelper.QueueEmailToSendGrid(req.Body, messageCollector, _logger);        
+    }
+```
+
+
