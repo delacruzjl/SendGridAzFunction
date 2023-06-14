@@ -14,10 +14,12 @@ public class SendGridMessageHandler : ISendGridMessageHandler
     public SendGridMessage MakeSendGridMessage(ContactForm contact)
     {
 
-        var msg = new SendGridMessage();
+        SendGridMessage msg = new();
         msg.SetTemplateId(_sendGridConfiguration.TemplateId);
         msg.SetFrom(_sendGridConfiguration.EmailAddress, _sendGridConfiguration.SenderName);
         msg.AddTo(_sendGridConfiguration.WebsiteAdminEmail);
+
+        msg.Subject = _sendGridConfiguration.SubjectLine;
         msg.SetSubject(_sendGridConfiguration.SubjectLine);
 
         msg.SetTemplateData(new
