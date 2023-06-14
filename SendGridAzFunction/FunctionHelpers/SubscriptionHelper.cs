@@ -22,7 +22,7 @@ public class SubscriptionHelper : ISubscriptionHelper
         _sendGridContactHandler = sendGridContactHandler;
     }
 
-    public async Task<int> SubscribeContactToSite(Stream body, ILogger _logger, int response)
+    public async Task<int> SubscribeContactToSite(Stream body, ILogger _logger)
     {
         using (_logger.BeginScope("NewsletterSubscriber"))
         {
@@ -30,9 +30,7 @@ public class SubscriptionHelper : ISubscriptionHelper
             await contact.Validate(_validator, _logger);
 
             _ = await _sendGridContactHandler.AddContactToSendGridList(contact, _logger);
-            response = await _sendGridContactHandler.AddContactToSendGridGroup(contact, _logger);
+            return await _sendGridContactHandler.AddContactToSendGridGroup(contact, _logger);
         }
-
-        return response;
     }
 }
