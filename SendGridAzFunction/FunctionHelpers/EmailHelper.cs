@@ -38,8 +38,8 @@ public class EmailHelper : IEmailHelper
             NewsletterContact contact = new()
             {
                 Email = message.Email,
-                FirstName = names.First(),
-                LastName = names.Last()
+                FirstName = names[0],
+                LastName = names[^1]
             };
 
             _ = await _sendGridContactHandler.AddContactToSendGridList(contact, _logger);
