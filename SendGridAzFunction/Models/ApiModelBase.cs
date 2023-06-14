@@ -17,7 +17,7 @@ public abstract class ApiModelBase
                 return;
 
             var message = string.Join(", ", validationResult.Errors.Select(x => $"{x.PropertyName}: {x.ErrorMessage}"));
-            logger.LogError($"NewsletterContact Validation failed - {message}");
+            logger.LogError("NewsletterContact Validation failed - {Message}", message);
             throw new ArgumentException(message);
         }
     }
