@@ -13,12 +13,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{A89E7333-8C3F-4315-A659-12424FFEEB23}"
 	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
 		.github\workflows\codeql.yml = .github\workflows\codeql.yml
 		.github\dependabot.yml = .github\dependabot.yml
 		nuget.yml = nuget.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Jodelac.SendGridAzFunction.Tests", "Jodelac.SendGridAzFunction.Tests\Jodelac.SendGridAzFunction.Tests.csproj", "{8AC31F51-02E3-49F6-AE3E-9B87B999E8AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Jodelac.SendGridAzFunction.Tests", "Jodelac.SendGridAzFunction.Tests\Jodelac.SendGridAzFunction.Tests.csproj", "{8AC31F51-02E3-49F6-AE3E-9B87B999E8AD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
