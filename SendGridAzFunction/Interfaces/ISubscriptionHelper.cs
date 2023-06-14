@@ -4,6 +4,6 @@ namespace Jodelac.SendGridAzFunction.Interfaces
 {
     public interface ISubscriptionHelper
     {
-        Task<int> SubscribeContactToSite(Stream body, ILogger _logger, int response);
+        Task<int> SubscribeContactToSite(Stream body, ILogger _logger);
     }
 }

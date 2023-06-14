@@ -37,7 +37,7 @@ public class SubscriptionHelperTests
         _sendgridContactHandlerStub.Setup(x => x.AddContactToSendGridGroup(contact, _loggerMock.Object)).ReturnsAsync(200);
 
         // Act
-        var response = await _sut.SubscribeContactToSite(body, _loggerMock.Object, 0);
+        var response = await _sut.SubscribeContactToSite(body, _loggerMock.Object);
 
         // Assert
         response.Equals(200);
@@ -61,6 +61,6 @@ public class SubscriptionHelperTests
         _sendgridContactHandlerStub.Setup(x => x.AddContactToSendGridGroup(It.IsAny<NewsletterContact>(), It.IsAny<ILogger>())).Throws<HttpRequestException>();
 
         // Act & Assert
-        await Assert.ThrowsAsync<HttpRequestException>(() => _sut.SubscribeContactToSite(body, _loggerMock.Object, 0));
+        await Assert.ThrowsAsync<HttpRequestException>(() => _sut.SubscribeContactToSite(body, _loggerMock.Object));
     }
 }
