@@ -1,4 +1,5 @@
-﻿using Jodelac.SendGridAzFunction.Handlers;
+﻿using DataGenerator;
+using Jodelac.SendGridAzFunction.Handlers;
 using Jodelac.SendGridAzFunction.Models;
 using Microsoft.Extensions.Configuration;
 using SendGrid.Helpers.Mail;
@@ -32,12 +33,7 @@ namespace Jodelac.SendGridAzFunction.Tests.Handlers
         public void MakeSendGridMessage_ValidContactForm()
         {
             // Arrange
-            var contactForm = new ContactForm
-            {
-                FullName = "John Doe",
-                Email = "johndoe@example.com",
-                Content = "Hello, World!"
-            };
+            var contactForm = Generator.Default.Single<ContactForm>();
 
             // Act
             var result = _sut.MakeSendGridMessage(contactForm);

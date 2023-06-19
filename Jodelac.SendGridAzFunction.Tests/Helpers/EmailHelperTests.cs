@@ -1,5 +1,7 @@
 ﻿using System.Text;
 using System.Text.Json;
+using DataGenerator;
+using DataGenerator.Sources;
 using Jodelac.SendGridAzFunction.Interfaces;
 using Jodelac.SendGridAzFunction.Models;
 using Jodelac.SendGridAzFunction.Validators;
@@ -12,17 +14,29 @@ namespace Jodelac.SendGridAzFunction.FunctionHelpers.Tests
 {
     public class EmailHelperTests
     {
+        public EmailHelperTests()
+        {
+            Generator.Default.Configure(c =>
+              c.Entity<ContactForm>(f =>
+              {
+                  f.Property(p => p.FullName).DataSource<NameSource>();
+                  f.Property(p => p.Content).DataSource<LoremIpsumSource>();
+              }));
+        }
+
         [Fact]
         public async Task QueueEmailToSendGrid_WithValidContactForm_ReturnsValidSendGridMessage()
         {
             // Arrange
+            var contactForm = Generator.Default.Single<ContactForm>();
+
             JsonSerializerOptions jsonOptions = new();
             ContactFormValidator validator = new();
             Mock<ISendGridContactHandler> sendGridContactHandlerMock = new();
             Mock<IAsyncCollector<SendGridMessage>> messageCollectorMock = new();
             NullLogger<EmailHelper> logger = new();
             Mock<ISendGridMessageHandler> sendGridMessageHandlerStub = new();
-            var contact = JsonSerializer.Serialize(new ContactForm("Fake", "fake@email", "test message"), jsonOptions);
+            var contact = JsonSerializer.Serialize(contactForm, jsonOptions);
             MemoryStream bodyFake = new(Encoding.UTF8.GetBytes(contact));
 
             var _sut = new EmailHelper(jsonOptions, validator, sendGridMessageHandlerStub.Object, sendGridContactHandlerMock.Object);

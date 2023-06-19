@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using DataGenerator;
 using Jodelac.SendGridAzFunction.Handlers;
 using Jodelac.SendGridAzFunction.Models;
 using Microsoft.Extensions.Configuration;
@@ -44,10 +45,7 @@ public class SendGridContactHandlerTests
     public async Task AddContactToSendGridGroup_ReturnsExpectedStatusCode()
     {
         // Arrange
-        var contact = new NewsletterContact
-        {
-            Email = "test@test.com"
-        };
+        var contact = Generator.Default.Single<NewsletterContact>();
 
         _sendGridClientMock
             .Setup(x =>
@@ -67,10 +65,7 @@ public class SendGridContactHandlerTests
     public async Task AddContactToSendGridGroup_ThrowsHttpRequestException_ForErrorResponse()
     {
         // Arrange
-        var contact = new NewsletterContact
-        {
-            Email = "test@test.com"
-        };
+        var contact = Generator.Default.Single<NewsletterContact>();
 
         _sendGridClientMock
             .Setup(x =>
@@ -87,10 +82,8 @@ public class SendGridContactHandlerTests
     public async Task AddContactToSendGridList_ReturnsExpectedStatusCode()
     {
         // Arrange
-        var contact = new NewsletterContact
-        {
-            Email = "test@test.com"
-        };
+        var contact = Generator.Default.Single<NewsletterContact>();
+
         _sendGridClientMock
             .Setup(x =>
                 x.RequestAsync(It.IsAny<SendGridClient.Method>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<CancellationToken>()))
@@ -109,10 +102,7 @@ public class SendGridContactHandlerTests
     public async Task AddContactToSendGridList_ThrowsHttpRequestException_ForErrorResponse()
     {
         // Arrange
-        var contact = new NewsletterContact
-        {
-            Email = "test@test.com"
-        };
+        var contact = Generator.Default.Single<NewsletterContact>();
 
         _sendGridClientMock
             .Setup(x =>
