@@ -1,7 +1,9 @@
 ﻿using DataGenerator;
+using DataGenerator.Sources;
 using Jodelac.SendGridAzFunction.Handlers;
 using Jodelac.SendGridAzFunction.Models;
-using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
+using Moq;
 using SendGrid.Helpers.Mail;
 
 namespace Jodelac.SendGridAzFunction.Tests.Handlers
@@ -9,23 +11,32 @@ namespace Jodelac.SendGridAzFunction.Tests.Handlers
     public class SendGridMessageHandlerTests
     {
         private readonly SendGridMessageHandler _sut;
+        private readonly string ExpectedEmail;
+        private readonly string ExpectedSubject;
 
         public SendGridMessageHandlerTests()
         {
-            var configValues = new Dictionary<string, string>
-            {
-                {SendGridConfiguration.SENDGRID_SENDER_EMAIL_ADDRESS, "test@example.com"},
-                {SendGridConfiguration.SENDGRID_SENDER_NAME, "Tester"},
-                {SendGridConfiguration.SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT, "Test"},
-                {SendGridConfiguration.SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID, "Test" },
-                {SendGridConfiguration.WEBSITE_ADMIN_EMAIL, "test@example.com" }
-            };
+            Generator.Default.Configure(c =>
+             c.Entity<SendGridConfiguration>(f =>
+             {
+                 f.Property(p => p.TemplateId).DataSource<GuidSource>();
+                 f.Property(p => p.SenderName).DataSource<NameSource>();
+                 f.Property(p => p.WebsiteAdminEmail).DataSource<EmailSource>();
+             }));
+            Generator.Default.Configure(c =>
+             c.Entity<ContactForm>(f =>
+             {
+                 f.Property(p => p.FullName).DataSource<NameSource>();
+                 f.Property(p => p.Content).DataSource<LoremIpsumSource>();
+             }));
 
-            var configurationFake = new ConfigurationBuilder()
-            .AddInMemoryCollection(configValues)
-            .Build();
+            var sendGridConfig = Generator.Default.Single<SendGridConfiguration>();
+            var config = Mock.Of<IOptionsMonitor<SendGridConfiguration>>(x =>
+                x.CurrentValue == sendGridConfig);
 
-            SendGridConfiguration config = new(configurationFake);
+            ExpectedEmail = sendGridConfig.WebsiteAdminEmail;
+            ExpectedSubject = sendGridConfig.SubjectLine;
+
             _sut = new(config);
         }
 
@@ -40,12 +51,12 @@ namespace Jodelac.SendGridAzFunction.Tests.Handlers
 
             // Assert
             Assert.NotNull(result);
-            Assert.Equal("Test", result.Subject);
+            Assert.Equal(ExpectedSubject, result.Subject);
             Assert.Collection(result.Personalizations,
                 personalization =>
                 {
                     Assert.Single(personalization.Tos);
-                    Assert.Equal(new EmailAddress("test@example.com"), personalization.Tos[0]);
+                    Assert.Equal(new EmailAddress(ExpectedEmail), personalization.Tos[0]);
                 });
         }
     }

@@ -1,57 +1,36 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿namespace Jodelac.SendGridAzFunction.Models;
 
-namespace Jodelac.SendGridAzFunction.Models;
-
-[System.Diagnostics.CodeAnalysis.SuppressMessage(
-    "Major Code Smell", "S3928:Parameter names used into ArgumentException constructors should match an existing one ",
-    Justification = "ArgumentNullException is the best option for this situation")]
-public class SendGridConfiguration
+public class SendGridConfiguration : ApiModelBase
 {
     public const string SENDGRID_API_KEY = "AzureWebJobsSendGridApiKey";
-    public const string SENDGRID_NEWSLETTER_LIST_ID = "SENDGRID_NEWSLETTER_LIST_ID";
-    public const string SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID = "SENDGRID_TEMPLATE_ID";
-    public const string SENDGRID_SENDER_EMAIL_ADDRESS = "SENDGRID_EMAIL_ADDRESS";
-    public const string SENDGRID_SENDER_NAME = "SENDGRID_SENDER_NAME";
-    public const string SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT = "SENDGRID_SUBJECT_LINE";
-    public const string SENDGRID_SUPRESSION_GROUP_ID = "SENDGRID_SUPPRESSION_GROUP_ID";
-    public const string WEBSITE_ADMIN_EMAIL = "WEBSITE_ADMIN_EMAIL";
+    public const string SENDGRID_NEWSLETTER_LIST_ID = "SendGrid:NewsletterListId";
+    public const string SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID = "SendGrid:TemplateId";
+    public const string SENDGRID_SENDER_EMAIL_ADDRESS = "SendGrid:EmailAddress";
+    public const string SENDGRID_SENDER_NAME = "SendGrid:SenderName";
+    public const string SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT = "SendGrid:SubjectLine";
+    public const string SENDGRID_SUPRESSION_GROUP_ID = "SendGrid:SuppressionGroupId";
+    public const string WEBSITE_ADMIN_EMAIL = "SendGrid:WebsiteAdminEmail";
 
-    private readonly IConfiguration _configuration;
-
-    public SendGridConfiguration(IConfiguration configuration)
+    public SendGridConfiguration()
     {
-        _configuration = configuration;
+        NewsletterListId = string.Empty;
+        TemplateId = string.Empty;
+        EmailAddress = string.Empty;
+        SenderName = string.Empty;
+        SubjectLine = string.Empty;
+        WebsiteAdminEmail = string.Empty;
+        SuppressionGroupId = 0;
     }
 
-    public string ApiKey =>
-        _configuration[SENDGRID_API_KEY]
-        ?? throw new ArgumentNullException(SENDGRID_API_KEY);
 
-    public string NewsletterListId =>
-        _configuration[SENDGRID_NEWSLETTER_LIST_ID]
-        ?? throw new ArgumentNullException(SENDGRID_NEWSLETTER_LIST_ID);
+    public string NewsletterListId { get; set; }
+    public string TemplateId { get; set; }
 
-    public string TemplateId =>
-        _configuration[SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID]
-        ?? throw new ArgumentNullException(SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID);
+    public string EmailAddress { get; set; }
 
-    public string EmailAddress =>
-        _configuration[SENDGRID_SENDER_EMAIL_ADDRESS]
-        ?? throw new ArgumentNullException(SENDGRID_SENDER_EMAIL_ADDRESS);
+    public string SenderName { get; set; }
 
-    public string SenderName =>
-        _configuration[SENDGRID_SENDER_NAME]
-        ?? throw new ArgumentNullException(SENDGRID_SENDER_NAME);
-
-    public string SubjectLine =>
-        _configuration[SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT]
-        ?? throw new ArgumentNullException(SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT);
-
-    public string WebsiteAdminEmail =>
-        _configuration[WEBSITE_ADMIN_EMAIL]
-        ?? throw new ArgumentNullException(WEBSITE_ADMIN_EMAIL);
-
-    public int SuppressionGroupId =>
-        int.Parse(_configuration[SENDGRID_SUPRESSION_GROUP_ID]
-        ?? throw new ArgumentNullException(SENDGRID_SUPRESSION_GROUP_ID));
+    public string SubjectLine { get; set; }
+    public string WebsiteAdminEmail { get; set; }
+    public int SuppressionGroupId { get; set; }
 }

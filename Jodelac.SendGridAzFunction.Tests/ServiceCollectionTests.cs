@@ -1,4 +1,6 @@
-﻿using Jodelac.SendGridAzFunction.FunctionHelpers;
+﻿using DataGenerator;
+using DataGenerator.Sources;
+using Jodelac.SendGridAzFunction.FunctionHelpers;
 using Jodelac.SendGridAzFunction.Handlers;
 using Jodelac.SendGridAzFunction.Interfaces;
 using Jodelac.SendGridAzFunction.Models;
@@ -19,7 +21,14 @@ public class ServiceCollectionExtensionsTests
         var configuration = new ConfigurationBuilder()
             .AddInMemoryCollection(new Dictionary<string, string>
             {
-                { SendGridConfiguration.SENDGRID_API_KEY, apiKey }
+                { SendGridConfiguration.SENDGRID_API_KEY, apiKey },
+                { SendGridConfiguration.SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID, Generator.Default.Single<EmailSource>().NextValue(null) as string  },
+                { SendGridConfiguration.SENDGRID_NEWSLETTER_LIST_ID,  Generator.Default.Single<GuidSource>().NextValue(null).ToString()},
+                { SendGridConfiguration.SENDGRID_SUPRESSION_GROUP_ID,  Generator.Default.Single<IntegerSource>().NextValue(null).ToString() },
+                { SendGridConfiguration.SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT,  Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_EMAIL_ADDRESS, Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_NAME,  Generator.Default.Single<NameSource>().NextValue(null)as string },
+                { SendGridConfiguration.WEBSITE_ADMIN_EMAIL, Generator.Default.Single<EmailSource>().NextValue(null)as string },
             })
             .Build();
         var services = new ServiceCollection();
@@ -39,11 +48,17 @@ public class ServiceCollectionExtensionsTests
     {
         // Arrange
         var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string>
-            {
-                { SendGridConfiguration.SENDGRID_API_KEY, string.Empty }
-            })
-            .Build();
+           .AddInMemoryCollection(new Dictionary<string, string>
+           {
+                { SendGridConfiguration.SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID, Generator.Default.Single<EmailSource>().NextValue(null) as string  },
+                { SendGridConfiguration.SENDGRID_NEWSLETTER_LIST_ID,  Generator.Default.Single<GuidSource>().NextValue(null).ToString()},
+                { SendGridConfiguration.SENDGRID_SUPRESSION_GROUP_ID,  Generator.Default.Single<IntegerSource>().NextValue(null).ToString() },
+                { SendGridConfiguration.SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT,  Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_EMAIL_ADDRESS, Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_NAME,  Generator.Default.Single<NameSource>().NextValue(null)as string },
+                { SendGridConfiguration.WEBSITE_ADMIN_EMAIL, Generator.Default.Single<EmailSource>().NextValue(null)as string },
+           })
+           .Build();
         var services = new ServiceCollection();
 
         // Act
@@ -58,11 +73,18 @@ public class ServiceCollectionExtensionsTests
     {
         // Arrange
         var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string>
-            {
-                { SendGridConfiguration.SENDGRID_API_KEY, apiKey }
-            })
-            .Build();
+           .AddInMemoryCollection(new Dictionary<string, string>
+           {
+                { SendGridConfiguration.SENDGRID_API_KEY, apiKey },
+                { SendGridConfiguration.SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID, Generator.Default.Single<EmailSource>().NextValue(null) as string  },
+                { SendGridConfiguration.SENDGRID_NEWSLETTER_LIST_ID,  Generator.Default.Single<GuidSource>().NextValue(null).ToString()},
+                { SendGridConfiguration.SENDGRID_SUPRESSION_GROUP_ID,  Generator.Default.Single<IntegerSource>().NextValue(null).ToString() },
+                { SendGridConfiguration.SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT,  Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_EMAIL_ADDRESS, Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_NAME,  Generator.Default.Single<NameSource>().NextValue(null)as string },
+                { SendGridConfiguration.WEBSITE_ADMIN_EMAIL, Generator.Default.Single<EmailSource>().NextValue(null)as string },
+           })
+           .Build();
         var services = new ServiceCollection();
 
         // Act
@@ -80,11 +102,18 @@ public class ServiceCollectionExtensionsTests
     {
         // Arrange
         var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string>
-            {
-                { SendGridConfiguration.SENDGRID_API_KEY, apiKey }
-            })
-            .Build();
+           .AddInMemoryCollection(new Dictionary<string, string>
+           {
+                { SendGridConfiguration.SENDGRID_API_KEY, apiKey },
+                { SendGridConfiguration.SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID, Generator.Default.Single<EmailSource>().NextValue(null) as string  },
+                { SendGridConfiguration.SENDGRID_NEWSLETTER_LIST_ID,  Generator.Default.Single<GuidSource>().NextValue(null).ToString()},
+                { SendGridConfiguration.SENDGRID_SUPRESSION_GROUP_ID,  Generator.Default.Single<IntegerSource>().NextValue(null).ToString() },
+                { SendGridConfiguration.SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT,  Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_EMAIL_ADDRESS, Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_NAME,  Generator.Default.Single<NameSource>().NextValue(null)as string },
+                { SendGridConfiguration.WEBSITE_ADMIN_EMAIL, Generator.Default.Single<EmailSource>().NextValue(null)as string },
+           })
+           .Build();
         var services = new ServiceCollection();
 
         // Act
@@ -102,11 +131,18 @@ public class ServiceCollectionExtensionsTests
     {
         // Arrange
         var configuration = new ConfigurationBuilder()
-            .AddInMemoryCollection(new Dictionary<string, string>
-            {
-                { SendGridConfiguration.SENDGRID_API_KEY, apiKey }
-            })
-            .Build();
+           .AddInMemoryCollection(new Dictionary<string, string>
+           {
+                { SendGridConfiguration.SENDGRID_API_KEY, apiKey },
+                { SendGridConfiguration.SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID, Generator.Default.Single<EmailSource>().NextValue(null) as string  },
+                { SendGridConfiguration.SENDGRID_NEWSLETTER_LIST_ID,  Generator.Default.Single<GuidSource>().NextValue(null).ToString()},
+                { SendGridConfiguration.SENDGRID_SUPRESSION_GROUP_ID,  Generator.Default.Single<IntegerSource>().NextValue(null).ToString() },
+                { SendGridConfiguration.SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT,  Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_EMAIL_ADDRESS, Generator.Default.Single<EmailSource>().NextValue(null)as string },
+                { SendGridConfiguration.SENDGRID_SENDER_NAME,  Generator.Default.Single<NameSource>().NextValue(null)as string },
+                { SendGridConfiguration.WEBSITE_ADMIN_EMAIL, Generator.Default.Single<EmailSource>().NextValue(null)as string },
+           })
+           .Build();
         var services = new ServiceCollection();
 
         // Act
@@ -117,5 +153,21 @@ public class ServiceCollectionExtensionsTests
         var helper = provider.GetRequiredService<ISubscriptionHelper>();
         Assert.NotNull(helper);
         Assert.IsType<SubscriptionHelper>(helper);
+    }
+
+    [Fact]
+    public void AddSendGridAzFunction_EmptySettings_ShouldThrowExceptions()
+    {
+        // Arrange
+        var configuration = new ConfigurationBuilder()
+            .AddInMemoryCollection(new Dictionary<string, string>
+            {
+                { SendGridConfiguration.SENDGRID_API_KEY, apiKey }
+            })
+            .Build();
+        var services = new ServiceCollection();
+
+        // Act
+        Assert.Throws<AggregateException>(() => services.AddSendGridAzFunction(configuration));
     }
 }

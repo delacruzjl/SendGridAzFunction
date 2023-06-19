@@ -27,7 +27,7 @@ public class SubscriptionHelper : ISubscriptionHelper
         using (_logger.BeginScope("NewsletterSubscriber"))
         {
             var contact = await body.ConvertFrom<NewsletterContact>(_jsonOptions, _logger);
-            await contact.Validate(_validator, _logger);
+            await contact.ValidateAsync(_validator, _logger);
 
             _ = await _sendGridContactHandler.AddContactToSendGridList(contact, _logger);
             return await _sendGridContactHandler.AddContactToSendGridGroup(contact, _logger);
