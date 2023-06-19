@@ -13,14 +13,14 @@ dotnet add package Jodelac.SendGridAzFunction
 4. Add the require keys to your settings
 
 ```init
-AzureWebJobsSendGridApiKey
-SENDGRID_NEWSLETTER_LIST_ID
-SENDGRID_TEMPLATE_ID
-SENDGRID_EMAIL_ADDRESS
-SENDGRID_SENDER_NAME
-SENDGRID_SUBJECT_LINE
-SENDGRID_SUPPRESSION_GROUP_ID
-WEBSITE_ADMIN_EMAIL
+AzureWebJobsSendGridApiKey = string
+SendGrid:NewsletterListId= string
+SendGrid:TemplateId= string
+SendGrid:EmailAddress= string
+SendGrid:SenderName= string
+SendGrid:SubjectLine= string
+SendGrid:SuppressionGroupId = int
+SendGrid:WebsiteAdminEmail= string
 ```
    
 4. Register the services
