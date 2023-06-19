@@ -3,6 +3,7 @@ using System.Text.Json;
 using Jodelac.SendGridAzFunction.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using SendGrid;
 
 namespace Jodelac.SendGridAzFunction.Handlers;
@@ -14,11 +15,11 @@ public class SendGridContactHandler : ISendGridContactHandler
     private readonly JsonSerializerOptions _jsonOptions;
 
     public SendGridContactHandler(
-        SendGridConfiguration sendGridConfiguration,
+        IOptionsMonitor<SendGridConfiguration> sendGridConfiguration,
         ISendGridClient sendGridClient,
         JsonSerializerOptions jsonOptions)
     {
-        _sendGridConfiguration = sendGridConfiguration;
+        _sendGridConfiguration = sendGridConfiguration.CurrentValue;
         _sendGridClient = sendGridClient;
         _jsonOptions = jsonOptions;
     }

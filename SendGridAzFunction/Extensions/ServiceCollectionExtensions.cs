@@ -6,6 +6,7 @@ using Jodelac.SendGridAzFunction.Interfaces;
 using Jodelac.SendGridAzFunction.Validators;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using SendGrid;
 
 namespace Jodelac.SendGridAzFunction.Extensions;
@@ -14,9 +15,8 @@ public static class ServiceCollectionExtensions
 {
     public static IServiceCollection AddSendGridAzFunction(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddSingleton(_ => new SendGridConfiguration(configuration));
-        services.AddSingleton(_ => new SendGridConfiguration(configuration));
-        services.AddSingleton(new SendGridConfiguration(configuration));
+        services.Configure<SendGridConfiguration>(
+            configuration.GetSection(key: "SendGrid"));
         services.AddSingleton(new JsonSerializerOptions
         {
             PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -32,6 +32,14 @@ public static class ServiceCollectionExtensions
 
         services.AddScoped<IEmailHelper, EmailHelper>();
         services.AddScoped<ISubscriptionHelper, SubscriptionHelper>();
+
+        var config = services.BuildServiceProvider().GetService<IOptionsMonitor<SendGridConfiguration>>()
+            ?? throw new ArgumentException("SendGrid configuration must be setup");
+
+        var configValidator = services.BuildServiceProvider().GetService<IValidator<SendGridConfiguration>>()
+            ?? throw new ArgumentException("No validator for sendgrid configuration found");
+
+        config?.CurrentValue?.ValidateAsync(configValidator).Wait();
 
         return services;
     }

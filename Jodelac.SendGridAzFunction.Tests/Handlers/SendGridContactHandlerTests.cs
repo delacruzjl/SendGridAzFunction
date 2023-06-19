@@ -3,8 +3,8 @@ using System.Text.Json;
 using DataGenerator;
 using Jodelac.SendGridAzFunction.Handlers;
 using Jodelac.SendGridAzFunction.Models;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Moq;
 using SendGrid;
 
@@ -14,7 +14,7 @@ public class SendGridContactHandlerTests
 {
     private readonly Mock<ISendGridClient> _sendGridClientMock = new Mock<ISendGridClient>();
     private readonly Mock<ILogger<SendGridContactHandler>> _loggerMock = new Mock<ILogger<SendGridContactHandler>>();
-    private readonly SendGridConfiguration _sendGridConfiguration;
+    private readonly IOptionsMonitor<SendGridConfiguration> _sendGridConfiguration;
     private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions()
     {
         PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
@@ -22,22 +22,8 @@ public class SendGridContactHandlerTests
 
     public SendGridContactHandlerTests()
     {
-        var configValues = new Dictionary<string, string>
-            {
-                {SendGridConfiguration.SENDGRID_SENDER_EMAIL_ADDRESS, "test@example.com"},
-                {SendGridConfiguration.SENDGRID_SENDER_NAME, "Tester"},
-                {SendGridConfiguration.SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT, "Test"},
-                {SendGridConfiguration.SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID, "Test" },
-                {SendGridConfiguration.WEBSITE_ADMIN_EMAIL, "test@example.com" },
-                {SendGridConfiguration.SENDGRID_NEWSLETTER_LIST_ID, "abcd" },
-                {SendGridConfiguration.SENDGRID_SUPRESSION_GROUP_ID, "1234" }
-            };
-
-        var configurationFake = new ConfigurationBuilder()
-        .AddInMemoryCollection(configValues)
-        .Build();
-
-        _sendGridConfiguration = new(configurationFake);
+        _sendGridConfiguration = Mock.Of<IOptionsMonitor<SendGridConfiguration>>(x =>
+            x.CurrentValue == Generator.Default.Single<SendGridConfiguration>());
     }
 
 

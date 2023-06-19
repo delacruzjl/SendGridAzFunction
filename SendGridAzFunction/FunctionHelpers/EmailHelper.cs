@@ -32,7 +32,7 @@ public class EmailHelper : IEmailHelper
         using (_logger.BeginScope(nameof(QueueEmailToSendGrid)))
         {
             var message = await body.ConvertFrom<ContactForm>(_jsonOptions, _logger);
-            await message.Validate(_validator, _logger);
+            await message.ValidateAsync(_validator, _logger);
 
             var names = message.FullName.Split(' ');
             NewsletterContact contact = new()

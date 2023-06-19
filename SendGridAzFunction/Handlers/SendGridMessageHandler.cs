@@ -1,4 +1,5 @@
 ﻿using Jodelac.SendGridAzFunction.Interfaces;
+using Microsoft.Extensions.Options;
 using SendGrid.Helpers.Mail;
 
 namespace Jodelac.SendGridAzFunction.Handlers;
@@ -6,9 +7,10 @@ public class SendGridMessageHandler : ISendGridMessageHandler
 {
     private readonly SendGridConfiguration _sendGridConfiguration;
 
-    public SendGridMessageHandler(SendGridConfiguration sendGridConfiguration)
+    public SendGridMessageHandler(
+        IOptionsMonitor<SendGridConfiguration> sendGridConfiguration)
     {
-        _sendGridConfiguration = sendGridConfiguration;
+        _sendGridConfiguration = sendGridConfiguration.CurrentValue;
     }
 
     public SendGridMessage MakeSendGridMessage(ContactForm contact)
