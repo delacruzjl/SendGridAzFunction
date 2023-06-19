@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using System.Text.Json;
+using DataGenerator;
 using FluentValidation;
 using Jodelac.SendGridAzFunction.FunctionHelpers;
 using Jodelac.SendGridAzFunction.Interfaces;
@@ -29,7 +30,8 @@ public class SubscriptionHelperTests
     public async Task SubscribeContactToSite_WithValidInput_Success()
     {
         // Arrange        
-        var contact = new NewsletterContact { FirstName = "Test", LastName = "Name", Email = "test@test.com" };
+        var contact = Generator.Default.Single<NewsletterContact>();
+
         var json = JsonSerializer.Serialize(contact);
         var body = new MemoryStream(Encoding.UTF8.GetBytes(json));
 
@@ -50,7 +52,8 @@ public class SubscriptionHelperTests
     {
         // Arrange
         var body = new MemoryStream();
-        var contact = new NewsletterContact { Email = "test.com" };
+        var contact = Generator.Default.Single<NewsletterContact>();
+
         var json = JsonSerializer.Serialize(contact);
         var writer = new StreamWriter(body);
         writer.Write(json);

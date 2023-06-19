@@ -1,20 +1,21 @@
 <Project>
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
   <ItemGroup>
-	  <PackageVersion Include="FluentValidation" Version="11.5.2" />
-	  <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
-	  <PackageVersion Include="Microsoft.Azure.WebJobs.Core" Version="3.0.37" />
-	  <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
-	  <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-	  <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
-	  <PackageVersion Include="SendGrid" Version="9.28.1" />
-
-	  <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
-	  <PackageVersion Include="Moq" Version="4.18.4" />
-	  <PackageVersion Include="xunit" Version="2.4.1" />
-	  <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.3" />
-	  <PackageVersion Include="coverlet.collector" Version="3.1.2" />
+    <PackageVersion Include="DataGenerator" Version="5.0.0.178" />
+    <PackageVersion Include="FluentValidation" Version="11.5.2" />
+    <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
+    <PackageVersion Include="Microsoft.Azure.WebJobs.Core" Version="3.0.37" />
+    <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+    <PackageVersion Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.1" />
+    <PackageVersion Include="SendGrid" Version="9.28.1" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
+    <PackageVersion Include="Moq" Version="4.18.4" />
+    <PackageVersion Include="xunit" Version="2.4.1" />
+    <PackageVersion Include="xunit.runner.visualstudio" Version="2.4.3" />
+    <PackageVersion Include="coverlet.collector" Version="3.1.2" />
   </ItemGroup>
 </Project>
