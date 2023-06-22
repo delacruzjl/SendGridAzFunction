@@ -1,3 +1,5 @@
+[![NuGet Badge](https://buildstats.info/nuget/Jodelac.SendGridAzFunction)](https://www.nuget.org/packages/Jodelac.SendGridAzFunction/) <span style="display: block; text-align: right;">[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)</span>
+
 # SendGridAzFunction
 
 Usage:
