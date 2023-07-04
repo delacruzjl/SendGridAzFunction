@@ -17,7 +17,7 @@ public static class ServiceCollectionExtensions
         services.AddSingleton(RegisterAppSerialization());
 
         var sendGridApiKey = configuration[SendGridConstants.SENDGRID_API_KEY];
-        services.AddSingleton(RegisterSendGridClient(sendGridApiKey));
+        services.AddSingleton(_ => RegisterSendGridClient(sendGridApiKey));
 
         services.AddScoped<ISendGridContactHandler, SendGridContactHandler>();
         services.AddScoped<ISendGridMessageHandler, SendGridMessageHandler>();
@@ -36,18 +36,15 @@ public static class ServiceCollectionExtensions
                 WriteIndented = true
             };
 
-        Func<IServiceProvider, ISendGridClient> RegisterSendGridClient(string sendGridApiKey)
+        ISendGridClient RegisterSendGridClient(string sendGridApiKey)
         {
-            return _ =>
+            if (string.IsNullOrWhiteSpace(sendGridApiKey))
             {
-                if (string.IsNullOrWhiteSpace(sendGridApiKey))
-                {
-                    ArgumentNullException argumentNullException = new(nameof(sendGridApiKey));
-                    throw argumentNullException;
-                }
+                ArgumentNullException argumentNullException = new(nameof(sendGridApiKey));
+                throw argumentNullException;
+            }
 
-                return new SendGridClient(sendGridApiKey);
-            };
+            return new SendGridClient(sendGridApiKey);
         }
     }
 }
