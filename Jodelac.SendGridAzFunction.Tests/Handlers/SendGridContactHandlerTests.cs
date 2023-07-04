@@ -1,29 +1,24 @@
 ﻿using System.Net;
-using System.Text.Json;
-using DataGenerator;
-using Jodelac.SendGridAzFunction.Handlers;
-using Jodelac.SendGridAzFunction.Models;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
-using Moq;
-using SendGrid;
 
 namespace Jodelac.SendGridAzFunctionTests.Handlers;
 
 public class SendGridContactHandlerTests
 {
-    private readonly Mock<ISendGridClient> _sendGridClientMock = new Mock<ISendGridClient>();
-    private readonly Mock<ILogger<SendGridContactHandler>> _loggerMock = new Mock<ILogger<SendGridContactHandler>>();
+    private readonly Mock<ISendGridClient> _sendGridClientMock;
+    private readonly Mock<ILogger<SendGridContactHandler>> _loggerMock;
     private readonly IOptionsMonitor<SendGridConfiguration> _sendGridConfiguration;
-    private readonly JsonSerializerOptions _jsonOptions = new JsonSerializerOptions()
-    {
-        PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-    };
+    private readonly JsonSerializerOptions _jsonOptions;
 
     public SendGridContactHandlerTests()
     {
+        _sendGridClientMock = new();
+        _loggerMock = new();
         _sendGridConfiguration = Mock.Of<IOptionsMonitor<SendGridConfiguration>>(x =>
             x.CurrentValue == Generator.Default.Single<SendGridConfiguration>());
+        _jsonOptions = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+        };
     }
 
 

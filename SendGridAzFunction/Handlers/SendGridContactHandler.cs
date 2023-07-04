@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics;
 using System.Text.Json;
-using Jodelac.SendGridAzFunction.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;

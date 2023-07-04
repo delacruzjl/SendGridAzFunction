@@ -1,16 +1,7 @@
 ﻿namespace Jodelac.SendGridAzFunction.Models;
 
-public class SendGridConfiguration : ApiModelBase
+public class SendGridConfiguration
 {
-    public const string SENDGRID_API_KEY = "AzureWebJobsSendGridApiKey";
-    public const string SENDGRID_NEWSLETTER_LIST_ID = "SendGrid:NewsletterListId";
-    public const string SENDGRID_EMAIL_DYNAMIC_TEMPLATE_ID = "SendGrid:TemplateId";
-    public const string SENDGRID_SENDER_EMAIL_ADDRESS = "SendGrid:EmailAddress";
-    public const string SENDGRID_SENDER_NAME = "SendGrid:SenderName";
-    public const string SENDGRID_EMAIL_FROMSITE_TOSENDER_SUBJECT = "SendGrid:SubjectLine";
-    public const string SENDGRID_SUPRESSION_GROUP_ID = "SendGrid:SuppressionGroupId";
-    public const string WEBSITE_ADMIN_EMAIL = "SendGrid:WebsiteAdminEmail";
-
     public SendGridConfiguration()
     {
         NewsletterListId = string.Empty;
@@ -23,14 +14,14 @@ public class SendGridConfiguration : ApiModelBase
     }
 
 
-    public string NewsletterListId { get; set; }
-    public string TemplateId { get; set; }
+    public string NewsletterListId { get; init; }
+    public string TemplateId { get; init; }
 
-    public string EmailAddress { get; set; }
+    public string EmailAddress { get; init; }
 
-    public string SenderName { get; set; }
+    public string SenderName { get; init; }
 
-    public string SubjectLine { get; set; }
-    public string WebsiteAdminEmail { get; set; }
-    public int SuppressionGroupId { get; set; }
+    public string SubjectLine { get; init; }
+    public string WebsiteAdminEmail { get; init; }
+    public int SuppressionGroupId { get; init; }
 }
