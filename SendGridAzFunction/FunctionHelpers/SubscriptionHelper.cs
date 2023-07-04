@@ -1,7 +1,5 @@
 ﻿using System.Text.Json;
 using FluentValidation;
-using Jodelac.SendGridAzFunction.Extensions;
-using Jodelac.SendGridAzFunction.Interfaces;
 using Microsoft.Extensions.Logging;
 
 namespace Jodelac.SendGridAzFunction.FunctionHelpers;

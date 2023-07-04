@@ -1,13 +1,7 @@
 ﻿using System.Text;
-using System.Text.Json;
-using DataGenerator;
 using DataGenerator.Sources;
-using Jodelac.SendGridAzFunction.Interfaces;
-using Jodelac.SendGridAzFunction.Models;
-using Jodelac.SendGridAzFunction.Validators;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging.Abstractions;
-using Moq;
 using SendGrid.Helpers.Mail;
 
 namespace Jodelac.SendGridAzFunction.FunctionHelpers.Tests

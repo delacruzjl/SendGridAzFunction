@@ -1,5 +1,4 @@
-﻿using Jodelac.SendGridAzFunction.Interfaces;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using SendGrid.Helpers.Mail;
 
 namespace Jodelac.SendGridAzFunction.Handlers;

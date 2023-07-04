@@ -1,9 +1,4 @@
-﻿using DataGenerator;
-using DataGenerator.Sources;
-using Jodelac.SendGridAzFunction.Handlers;
-using Jodelac.SendGridAzFunction.Models;
-using Microsoft.Extensions.Options;
-using Moq;
+﻿using DataGenerator.Sources;
 using SendGrid.Helpers.Mail;
 
 namespace Jodelac.SendGridAzFunction.Tests.Handlers
